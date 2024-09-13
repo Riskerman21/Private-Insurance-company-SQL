@@ -3,7 +3,7 @@ CREATE TABLE InsuranceClaim (
     PolicyID INT,                                  
     ClaimDate DATE NOT NULL,                       
     ClaimAmount DECIMAL(10, 2) NOT NULL,           
-    ClaimStatus VARCHAR(10) CHECK (ClaimStatus IN ('Pending', 'Approved', 'Rejected')), 
+    ClaimStatus VARCHAR(10),
     ClaimDescription VARCHAR(500),                 
-    CONSTRAINT FK_Policy_Claim FOREIGN KEY (PolicyID) REFERENCES Policy(PolicyID)  
+    CONSTRAINT FK_Policy_Claim FOREIGN KEY (PolicyID) REFERENCES Policy(PolicyID)
 );
