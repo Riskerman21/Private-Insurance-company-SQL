@@ -1,6 +1,6 @@
 CREATE TABLE InsuranceClaim (
     ClaimID INT AUTO_INCREMENT PRIMARY KEY,        
-    PolicyID INT,                                  
+    PolicyID VARCHAR(6),                                  
     ClaimDate DATE NOT NULL,                       
     ClaimAmount DECIMAL(10, 2) NOT NULL,           
     ClaimStatus VARCHAR(10),
