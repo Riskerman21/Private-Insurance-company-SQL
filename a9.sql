@@ -1,10 +1,12 @@
 SELECT C.CustomerID
 FROM Customer C
-LEFT JOIN (
-    SELECT P.CustomerID, COUNT(P.PolicyID) AS PolicyCount
-    FROM Policy  P
+JOIN (
+    SELECT P.CustomerID
+    FROM Policy P
+    JOIN Vehicle V ON P.VehicleID = V.VehicleID
+    WHERE V.VehiclePurpose = 'Business'
     GROUP BY P.CustomerID
-) PC ON C.CustomerID = PC.CustomerID
-WHERE C.Email LIKE 'uqconnect.edu.au%' 
-   OR C.Email LIKE 'uq.edu.au%' 
-   OR COALESCE(PC.PolicyCount, 0) >= 3; 
+    HAVING COUNT(P.VehicleID) >= 3
+) BC ON C.CustomerID = BC.CustomerID
+WHERE C.Email LIKE '%uqconnect.edu.au%' 
+   OR C.Email LIKE '%uq.edu.au%';
