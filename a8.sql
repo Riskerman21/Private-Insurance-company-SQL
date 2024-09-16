@@ -9,5 +9,5 @@ HAVING AVG(V.EstYearlyKm) = (
         FROM Vehicle V
         JOIN VehicleCodeMapping VM ON V.VehicleCode = VM.VehicleCode
         GROUP BY VM.Make
-    ) AS Subquery
+    )
 );
