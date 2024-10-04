@@ -1,11 +1,11 @@
-SELECT CustomerID
+CREATE VIEW CustomerTotalPremium AS
+SELECT CustomerID, SUM(Premium) AS TotalPremium
 FROM Policy
-GROUP BY CustomerID
-HAVING SUM(Premium) = (
+GROUP BY CustomerID;
+
+SELECT CustomerID
+FROM CustomerTotalPremium
+WHERE TotalPremium = (
     SELECT MAX(TotalPremium)
-    FROM (
-        SELECT SUM(Premium) AS TotalPremium
-        FROM Policy
-        GROUP BY CustomerID
-    ) AS Subquery
+    FROM CustomerTotalPremium
 );
